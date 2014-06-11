@@ -12,10 +12,13 @@ Goals
 ------
 
   * Use Maven modules to separate distinct chunks:
-    -- shared Service interfaces and Domain objects
-    -- client (GWT UI) code
-    -- backend Service implementation
+    -- See: https://github.com/tbroyer/gwt-maven-archetypes
+    The app is organized into three maven modules:
+    -- TestApp-shared: Service interfaces and Domain objects
+    -- TestApp-client: (GWT UI) code
+    -- TestApp-server: backend Service implementation and webapp/GWT files
   * Use Spring services for the RPC implementations
+    -- See: http://www.javacodegeeks.com/2010/05/gwt-2-spring-3-jpa-2-hibernate-35-2.html
   * Use JPA Entities as objects passed
 TODO:
   * Modernize Spring and JPA DAO (also remove unused methods)
@@ -64,3 +67,11 @@ mvn gwt:run-codeserver -Ddev
 4) Launch webapp in *any* browser: http://localhost:8080/
 
 5) Click on "Dev Mode On" bookmark (not sure why this is necessary)
+
+
+To Build Production WAR
+-----------------------
+
+1) mvn clean package
+
+WAR file is generated in the TestApp-server/target/ directory.

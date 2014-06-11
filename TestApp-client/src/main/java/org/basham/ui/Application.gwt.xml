@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<module rename-to="app">
+
+	<!-- GWT and 3rd-Party libraries -->
+	<inherits name="com.google.gwt.user.User" />
+	<inherits name="com.google.gwt.user.theme.clean.Clean" />
+    <inherits name="com.allen_sauer.gwt.log.gwt-log-DEBUG" />
+
+	<add-linker name="xsiframe" />
+
+    <!-- My code -->
+    <inherits name="org.basham.TestApp" />  <!-- Shared library -->
+    <!-- Client-side code -->
+    <source path="client" />
+	<entry-point class="org.basham.ui.client.Application" />
+
+	<!-- Only support recent browsers -->
+	<!-- <set-property name="user.agent" value="ie10,gecko1_8,safari" /> -->
+
+</module>

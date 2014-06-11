@@ -1,0 +1,130 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+	<modelVersion>4.0.0</modelVersion>
+
+	<parent>
+		<groupId>org.basham</groupId>
+		<artifactId>TestApp</artifactId>
+		<version>1.0-SNAPSHOT</version>
+	</parent>
+
+	<artifactId>TestApp-client</artifactId>
+	<packaging>war</packaging>
+
+	<prerequisites>
+		<maven>${mavenVersion}</maven>
+	</prerequisites>
+
+	<properties>
+		<gwt.genParam>false</gwt.genParam>
+		<!-- keep in sync with TestApp-server -->
+		<runTarget>http://localhost:8080/</runTarget>
+	</properties>
+
+	<dependencies>
+		<dependency>
+			<groupId>${project.groupId}</groupId>
+			<artifactId>TestApp-shared</artifactId>
+			<version>${project.version}</version>
+			<scope>provided</scope>
+		</dependency>
+		<dependency>
+			<groupId>${project.groupId}</groupId>
+			<artifactId>TestApp-shared</artifactId>
+			<version>${project.version}</version>
+			<classifier>sources</classifier>
+			<scope>provided</scope>
+		</dependency>
+        <dependency>
+            <groupId>com.google.gwt</groupId>
+            <artifactId>gwt-user</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>com.allen-sauer.gwt.log</groupId>
+            <artifactId>gwt-log</artifactId>
+        </dependency>
+	</dependencies>
+
+	<build>
+		<plugins>
+			<plugin>
+				<groupId>org.codehaus.mojo</groupId>
+				<artifactId>gwt-maven-plugin</artifactId>
+				<configuration>
+					<module>org.basham.ui.Application</module>
+					<strict>true</strict>
+					<logLevel>INFO</logLevel>
+					<genParam>${gwt.genParam}</genParam>
+					<noserver>true</noserver>
+					<runTarget>${runTarget}</runTarget>
+					<port>8889</port>
+				</configuration>
+			</plugin>
+			<plugin>
+				<artifactId>maven-war-plugin</artifactId>
+				<configuration>
+					<failOnMissingWebXml>false</failOnMissingWebXml>
+					<packagingExcludes>WEB-INF/**</packagingExcludes>
+				</configuration>
+			</plugin>
+		</plugins>
+		<pluginManagement>
+			<plugins>
+				<plugin>
+					<groupId>org.apache.tomcat.maven</groupId>
+					<artifactId>tomcat6-maven-plugin</artifactId>
+					<configuration>
+						<skip>true</skip>
+					</configuration>
+				</plugin>
+				<plugin>
+					<groupId>org.apache.tomcat.maven</groupId>
+					<artifactId>tomcat7-maven-plugin</artifactId>
+					<configuration>
+						<skip>true</skip>
+					</configuration>
+				</plugin>
+			</plugins>
+		</pluginManagement>
+	</build>
+
+	<profiles>
+		<profile>
+			<id>dev</id>
+			<activation>
+				<property>
+					<name>dev</name>
+				</property>
+			</activation>
+			<build>
+				<!-- FIXME: workaround for MGWT-332 -->
+				<plugins>
+					<plugin>
+						<groupId>org.codehaus.mojo</groupId>
+						<artifactId>build-helper-maven-plugin</artifactId>
+						<executions>
+							<execution>
+								<id>add-shared-sources-to-classpath</id>
+								<!-- After 'process-resources' so they're not copied to ${project.build.outputDirectory} -->
+								<!-- But before 'compile' to make them available to 'gwt:run' -->
+								<phase>compile</phase>
+								<goals>
+									<goal>add-resource</goal>
+								</goals>
+								<configuration>
+									<resources>
+										<!-- Only sources, resources are already in the classpath, by definition -->
+                                        <resource>
+                                            <directory>${basedir}/../TestApp-shared/src/main/java</directory>
+                                        </resource>
+									</resources>
+								</configuration>
+							</execution>
+						</executions>
+					</plugin>
+				</plugins>
+			</build>
+		</profile>
+	</profiles>
+</project>

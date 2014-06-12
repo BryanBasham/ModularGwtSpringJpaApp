@@ -45,11 +45,6 @@ public class SpringGwtRemoteServiceServlet extends RemoteServiceServlet {
 			RPCRequest rpcRequest = RPC.decodeRequest(payload, handler.getClass(), this);
 			onAfterRequestDeserialized(rpcRequest);
 
-			if (LOG.isDebugEnabled()) {
-				LOG.debug("Invoking " + handler.getClass().getName() + "."
-						+ rpcRequest.getMethod().getName());
-			}
-
 			return RPC.invokeAndEncodeResponse(handler,
 					rpcRequest.getMethod(),
 					rpcRequest.getParameters(),

@@ -19,9 +19,10 @@ Goals
     -- TestApp-server: backend Service implementation and webapp/GWT files
   * Use Spring services for the RPC implementations
     -- See: http://www.javacodegeeks.com/2010/05/gwt-2-spring-3-jpa-2-hibernate-35-2.html
-  * Use JPA Entities as objects passed
-TODO:
+  * Use JPA Entities as objects passed across RPC boundary
+  * Add logging configuration
   * Modernize Spring and JPA DAO (also remove unused methods)
+TODO:
   * Add lazy loaded JPA relationship (eg, Department -> Employee)
     -- This will inform the need for the next step (JPACloner)
   * Use JpaCloner to prevent GWT serialization problems of lazy loading

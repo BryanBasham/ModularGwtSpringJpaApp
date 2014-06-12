@@ -9,10 +9,6 @@ import java.io.Serializable;
  */
 public interface DomainEntity<K extends Serializable> extends Serializable {
 
-    //
-    // Public contract
-    //
-
 	/**
 	 * Gets the database ID for this Entity.
 	 */

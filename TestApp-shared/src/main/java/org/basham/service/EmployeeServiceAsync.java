@@ -10,7 +10,8 @@ import org.basham.domain.Employee;
 import com.google.gwt.user.client.rpc.AsyncCallback;
 
 /**
- * This EmployeeServiceAsync class provides 
+ * The contract for the GWT RPC asynchronous version of the {@link EmployeeService}
+ * interface.
  * 
  * @author <a href='mailto:basham47@gmail.com'>Bryan Basham</a> 
  */

@@ -131,7 +131,7 @@ public abstract class AbstractJpaDAO<K extends Serializable, E extends Serializa
 	 * 
 	 * @param e  the entity to save
 	 */
-	public void saveEntity(final DomainEntity e) {
+	public void saveEntity(final DomainEntity<K> e) {
 		if (e.isNew()) {
 			entityManager.persist(e);
 			if (LOG.isTraceEnabled()) {
@@ -150,7 +150,7 @@ public abstract class AbstractJpaDAO<K extends Serializable, E extends Serializa
 	 * 
 	 * @param e  the entity to delete
 	 */
-	public void deleteEntity(final DomainEntity e) {
+	public void deleteEntity(final DomainEntity<K> e) {
 		entityManager.remove(e);
 	}
 

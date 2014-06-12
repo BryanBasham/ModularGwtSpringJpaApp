@@ -18,7 +18,7 @@ public class Employee implements DomainEntity<Long> {
 
 	@Id
 	@Column(name="id")
-	private Long employeeId;
+	private Long id;
 	
 	@Column(name="employee_name", nullable = false, length=30)
 	private String employeeName;
@@ -36,13 +36,12 @@ public class Employee implements DomainEntity<Long> {
 	public Employee() {
 	}
 
-	public Employee(Long employeeId) {
-		this.employeeId = employeeId;		
+	public Employee(Long id) {
+		this.id = id;		
 	}
 
-	public Employee(Long employeeId, String employeeName, String employeeSurname,
-			String job) {
-		this.employeeId = employeeId;
+	public Employee(Long id, String employeeName, String employeeSurname, String job) {
+		this.id = id;
 		this.employeeName = employeeName;
 		this.employeeSurname = employeeSurname;
 		this.job = job;
@@ -54,12 +53,12 @@ public class Employee implements DomainEntity<Long> {
 
 	@Override
 	public Long getId() {
-		return employeeId;
+		return id;
 	}
 	
 	@Override
 	public boolean isNew() {
-		return employeeId == null;
+		return id == null;
 	}
 
 	//
@@ -97,7 +96,7 @@ public class Employee implements DomainEntity<Long> {
 	@Override
 	public String toString() {
 		return Objects.toStringHelper(Employee.class)
-				.add("id", employeeId)
+				.add("id", id)
 				.add("isNew", isNew())
 				.add("employeeName", employeeName)
 				.add("job", job)

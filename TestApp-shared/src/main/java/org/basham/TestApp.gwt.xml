@@ -1,7 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <module>
 
+    <!-- GWT and 3rd-Party libraries -->
     <inherits name="com.google.gwt.core.Core" />
+    <inherits name="com.google.common.collect.Collect" />
     
     <source path="util" />
     <source path="domain" />

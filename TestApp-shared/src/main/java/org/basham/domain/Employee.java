@@ -5,15 +5,20 @@ import javax.persistence.Entity;
 import javax.persistence.Id;
 import javax.persistence.Table;
 
+import com.google.common.base.Objects;
+
 @Entity
 @Table(name = "employee")
-public class Employee implements java.io.Serializable {
-	
+public class Employee implements DomainEntity<Long> {
 	private static final long serialVersionUID = 7440297955003302414L;
+
+	//
+	// Attributes
+	//
 
 	@Id
 	@Column(name="id")
-	private long employeeId;
+	private Long employeeId;
 	
 	@Column(name="employee_name", nullable = false, length=30)
 	private String employeeName;
@@ -23,15 +28,19 @@ public class Employee implements java.io.Serializable {
 	
 	@Column(name="job", length=50)
 	private String job;
-		
+
+	//
+	// Constructors
+	//
+
 	public Employee() {
 	}
 
-	public Employee(int employeeId) {
+	public Employee(Long employeeId) {
 		this.employeeId = employeeId;		
 	}
 
-	public Employee(long employeeId, String employeeName, String employeeSurname,
+	public Employee(Long employeeId, String employeeName, String employeeSurname,
 			String job) {
 		this.employeeId = employeeId;
 		this.employeeName = employeeName;
@@ -39,13 +48,23 @@ public class Employee implements java.io.Serializable {
 		this.job = job;
 	}
 
-	public long getEmployeeId() {
+	//
+	// DomainEntity methods
+	//
+
+	@Override
+	public Long getId() {
 		return employeeId;
 	}
-
-	public void setEmployeeId(long employeeId) {
-		this.employeeId = employeeId;
+	
+	@Override
+	public boolean isNew() {
+		return employeeId == null;
 	}
+
+	//
+	// Accessor methods
+	//
 
 	public String getEmployeeName() {
 		return employeeName;
@@ -70,4 +89,19 @@ public class Employee implements java.io.Serializable {
 	public void setJob(String job) {
 		this.job = job;
 	}
+
+	//
+    // Object methods
+    //
+
+	@Override
+	public String toString() {
+		return Objects.toStringHelper(Employee.class)
+				.add("id", employeeId)
+				.add("isNew", isNew())
+				.add("employeeName", employeeName)
+				.add("job", job)
+				.toString();
+	}
+
 }

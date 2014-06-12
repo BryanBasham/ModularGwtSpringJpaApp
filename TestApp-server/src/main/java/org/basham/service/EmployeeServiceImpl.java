@@ -1,5 +1,6 @@
 package org.basham.service;
 
+import org.apache.log4j.Logger;
 import org.basham.dao.EmployeeDAO;
 import org.basham.domain.Employee;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -8,48 +9,34 @@ import org.springframework.transaction.annotation.Transactional;
 
 @Service("employeeSvc")
 public class EmployeeServiceImpl implements EmployeeService {
+	private static final Logger LOG = Logger.getLogger(EmployeeServiceImpl.class);
 
 	@Autowired
 	private EmployeeDAO employeeDAO;
 
+	//
+	// EmployeeService methods
+	//
+
+	@Override
+	@Transactional(readOnly = true)
 	public Employee findEmployee(long employeeId) {
+		LOG.debug("findEmployee: " + employeeId);
 		return employeeDAO.findById(employeeId);
 	}
 
+	@Override
 	@Transactional
-	public void saveEmployee(long employeeId, String name, String surname,
-			String jobDescription) throws Exception {
-		Employee employee = employeeDAO.findById(employeeId);
-		if (employee == null) {
-			employee = new Employee(employeeId, name, surname, jobDescription);
-			employeeDAO.persist(employee);
-		}
+	public void saveEmployee(Employee employee) throws Exception {
+		LOG.debug("saveEmployee: " + employee);
+		employeeDAO.saveEntity(employee);
 	}
 
-	@Transactional
-	public void updateEmployee(long employeeId, String name, String surname,
-			String jobDescription) throws Exception {
-		Employee employee = employeeDAO.findById(employeeId);
-		if (employee != null) {
-			employee.setEmployeeName(name);
-			employee.setEmployeeSurname(surname);
-			employee.setJob(jobDescription);
-		}
-	}
-
+	@Override
 	@Transactional
 	public void deleteEmployee(long employeeId) throws Exception {
-		Employee employee = employeeDAO.findById(employeeId);
-		if (employee != null) {
-			employeeDAO.remove(employee);
-		}
-	}
-
-	@Transactional
-	public void saveOrUpdateEmployee(long employeeId, String name,
-			String surname, String jobDescription) throws Exception {
-		Employee employee = new Employee(employeeId, name, surname, jobDescription);
-		employeeDAO.merge(employee);
+		LOG.debug("deleteEmployee: " + employeeId);
+		employeeDAO.deleteById(employeeId);
 	}
 
 }

@@ -16,9 +16,7 @@ import com.google.gwt.user.client.rpc.RemoteService;
 public interface EmployeeService extends RemoteService {
 	
 	public Employee findEmployee(long employeeId);
-	public void saveEmployee(long employeeId, String name, String surname, String jobDescription) throws Exception;
-	public void updateEmployee(long employeeId, String name, String surname, String jobDescription) throws Exception;
-	public void saveOrUpdateEmployee(long employeeId, String name, String surname, String jobDescription) throws Exception;
+	public void saveEmployee(Employee employee) throws Exception;
 	public void deleteEmployee(long employeeId) throws Exception;
 	
 }

@@ -20,8 +20,10 @@
 		<maven.compiler.target>1.6</maven.compiler.target>
 
 		<gwt.version>2.6.1</gwt.version>
-		<org.springframework.version>3.1.1.RELEASE</org.springframework.version>
+		<org.springframework.version>3.2.8.RELEASE</org.springframework.version>
 		<org.hibernate.version>4.1.4.Final</org.hibernate.version>
+        <jpa.version>1.0.0.Final</jpa.version>
+        <guava.version>17.0</guava.version>
 	</properties>
 
 	<repositories>
@@ -87,19 +89,24 @@
 			<dependency>
 				<groupId>org.hibernate.javax.persistence</groupId>
 				<artifactId>hibernate-jpa-2.0-api</artifactId>
-				<version>1.0.0.Final</version>
+				<version>${jpa.version}</version>
 			</dependency>
             <dependency>
                 <groupId>org.hibernate.javax.persistence</groupId>
                 <artifactId>hibernate-jpa-2.0-api</artifactId>
                 <classifier>sources</classifier>
-                <version>1.0.0.Final</version>
+                <version>${jpa.version}</version>
             </dependency>
 			<dependency>
 				<groupId>org.slf4j</groupId>
 				<artifactId>slf4j-log4j12</artifactId>
 				<version>1.5.8</version>
 			</dependency>
+            <dependency>
+                <groupId>com.google.guava</groupId>
+                <artifactId>guava</artifactId>
+                <version>${guava.version}</version>
+            </dependency>
 			<dependency>
 				<groupId>org.hsqldb</groupId>
 				<artifactId>hsqldb</artifactId>
@@ -208,7 +215,6 @@
 					<artifactId>maven-war-plugin</artifactId>
 					<version>2.4</version>
 					<configuration>
-                        <webappDirectory>src/main/webapp</webappDirectory>
 						<archive>
 							<addMavenDescriptor>false</addMavenDescriptor>
 						</archive>

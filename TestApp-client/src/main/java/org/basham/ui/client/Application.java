@@ -153,7 +153,8 @@ public class Application
 				String employeeSurname = employeeInfo[2];
 				String employeeJobTitle = employeeInfo[3];
 				
-				employeeService.saveOrUpdateEmployee(employeeId, employeeName, employeeSurname, employeeJobTitle, 
+				Employee employee = new Employee(employeeId, employeeName, employeeSurname, employeeJobTitle);
+				employeeService.saveEmployee(employee, 
 						new AsyncCallback<Void>() {
 							public void onFailure(Throwable caught) {
 								// Show the RPC error message to the user
@@ -227,7 +228,7 @@ public class Application
 								serverResponseLabel
 										.removeStyleName("serverResponseLabelError");
 								if(employee != null)
-									serverResponseLabel.setHTML("Employee Information <br>Id : " + employee.getEmployeeId() + "<br>Name : " + employee.getEmployeeName() + "<br>Surname : " + employee.getEmployeeSurname() + "<br>Job Title : " + employee.getJob());
+									serverResponseLabel.setHTML("Employee Information <br>DB id : " + employee.getId() + "<br>Name : " + employee.getEmployeeName() + "<br>Surname : " + employee.getEmployeeSurname() + "<br>Job Title : " + employee.getJob());
 								else
 									serverResponseLabel.setHTML("No employee with the specified id found");
 								dialogBox.center();

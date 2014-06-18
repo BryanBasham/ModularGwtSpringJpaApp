@@ -13,13 +13,14 @@ combined together to form the foundation of future GWT/Spring/JPA webapps.
     See: https://github.com/tbroyer/gwt-maven-archetypes
     
     The app is organized into three maven modules:
+    
     ** TestApp-shared: Service interfaces and Domain objects
     ** TestApp-client: (GWT UI) code
     ** TestApp-server: backend Service implementation and webapp/GWT files
     
 * Use Spring services for the RPC implementations
 
-    -- See: http://www.javacodegeeks.com/2010/05/gwt-2-spring-3-jpa-2-hibernate-35-2.html
+    See: http://www.javacodegeeks.com/2010/05/gwt-2-spring-3-jpa-2-hibernate-35-2.html
     
 * Use JPA Entities as objects passed across RPC boundary
 * Add logging configuration
@@ -29,17 +30,19 @@ combined together to form the foundation of future GWT/Spring/JPA webapps.
 
 * Add lazy loaded JPA relationship (eg, Department -> Employee)
 
-    -- This will inform the need for the next step (JPACloner)
+    This will inform the need for the next step (JPACloner)
     
 * Use JpaCloner to prevent GWT serialization problems of lazy loading
 
-    -- See: https://github.com/nociar/jpa-cloner
+    See: https://github.com/nociar/jpa-cloner
     
 * Use MVP separation of concerns
+
 * Use GWT Places & Activities
+
 * Use ServerResponse to capture Server-side problems and exceptions
 
-    -- Use AOP to wrap methods that return an SR to capture unexpected exceptions
+    Use AOP to wrap methods that return an SR to capture unexpected exceptions
     
 * Others???
 
@@ -79,13 +82,13 @@ plugin so --theoretically-- can be run in any browser.
 
  ```mvn gwt:run-codeserver -Ddev```
 
-4. Launch webapp in *any* browser: http://localhost:8080/
+4. Launch webapp in *any* browser: ```http://localhost:8080/```
 
 5. Click on "Dev Mode On" bookmark (not sure why this is necessary)
 
 
 ## To Build Production WAR
 
-1. '''mvn clean package'''
+1. ```mvn clean package```
 
  WAR file is generated in the ```TestApp-server/target/``` directory.

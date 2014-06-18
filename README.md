@@ -14,9 +14,9 @@ combined together to form the foundation of future GWT/Spring/JPA webapps.
     
     The app is organized into three maven modules:
     
-    * TestApp-shared: Service interfaces and Domain objects
-    * TestApp-client: (GWT UI) code
-    * TestApp-server: backend Service implementation and webapp/GWT files
+    * ```TestApp-shared```: Service interfaces and Domain objects
+    * ```TestApp-client```: (GWT UI) code
+    * ```TestApp-server```: backend Service implementation and webapp/GWT files
     
 * Use Spring services for the RPC implementations
 

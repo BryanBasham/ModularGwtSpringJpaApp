@@ -20,23 +20,23 @@ public class EmployeeServiceImpl implements EmployeeService {
 
 	@Override
 	@Transactional(readOnly = true)
-	public Employee findEmployee(long employeeId) {
-		LOG.debug("findEmployee: " + employeeId);
-		return employeeDAO.findById(employeeId);
+	public Employee findEmployee(long id) {
+		LOG.debug("findEmployee: " + id);
+		return employeeDAO.findById(id);
 	}
 
 	@Override
 	@Transactional
-	public void saveEmployee(Employee employee) throws Exception {
+	public void saveEmployee(Employee employee) {
 		LOG.debug("saveEmployee: " + employee);
 		employeeDAO.saveEntity(employee);
 	}
 
 	@Override
 	@Transactional
-	public void deleteEmployee(long employeeId) throws Exception {
-		LOG.debug("deleteEmployee: " + employeeId);
-		employeeDAO.deleteById(employeeId);
+	public void deleteEmployee(long id) {
+		LOG.debug("deleteEmployee: " + id);
+		employeeDAO.deleteById(id);
 	}
 
 }

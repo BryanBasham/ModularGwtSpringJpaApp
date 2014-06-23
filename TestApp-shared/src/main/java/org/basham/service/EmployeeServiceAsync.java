@@ -16,10 +16,7 @@ import com.google.gwt.user.client.rpc.AsyncCallback;
  * @author <a href='mailto:basham47@gmail.com'>Bryan Basham</a> 
  */
 public interface EmployeeServiceAsync {
-
-	void findEmployee(long employeeId, AsyncCallback<Employee> callback);
-
-	void deleteEmployee(long employeeId, AsyncCallback<Void> callback);
-
+	void findEmployee(long id, AsyncCallback<Employee> callback);
+	void deleteEmployee(long id, AsyncCallback<Void> callback);
 	void saveEmployee(Employee employee, AsyncCallback<Void> callback);
 }

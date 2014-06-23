@@ -1,4 +1,4 @@
-# Test Webapp using Modular GWT & Spring/JPA
+# Test Webapp using Modular GWT & Spring & JPA
 
 ## Purpose
 
@@ -23,20 +23,23 @@ combined together to form the foundation of future GWT/Spring/JPA webapps.
     See: http://www.javacodegeeks.com/2010/05/gwt-2-spring-3-jpa-2-hibernate-35-2.html
     
 * Use JPA Entities as objects passed across RPC boundary
-* Add logging configuration
-* Modernize Spring and JPA DAO (also remove unused methods)
 
-### TODO:
+* Add logging configuration
+
+* Modernize Spring and JPA DAO (also remove unused methods)
 
 * Add lazy loaded JPA relationship (eg, Department -> Employee)
 
     This will inform the need for the next step (JPACloner)
-    
+
 * Use JpaCloner to prevent GWT serialization problems of lazy loading
 
     See: https://github.com/nociar/jpa-cloner
-    
+
 * Use MVP separation of concerns
+
+
+### TODO:
 
 * Use GWT Places & Activities
 

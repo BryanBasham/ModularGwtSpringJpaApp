@@ -2,7 +2,9 @@ package org.basham.domain;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.Id;
+import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 
 import com.google.common.base.Objects;
@@ -17,8 +19,7 @@ public class Employee implements DomainEntity<Long> {
 	//
 
 	@Id
-	@Column(name="id")
-	private Long id;
+	private Long id = createID();
 	
 	@Column(name="employee_name", nullable = false, length=30)
 	private String employeeName;
@@ -29,6 +30,9 @@ public class Employee implements DomainEntity<Long> {
 	@Column(name="job", length=50)
 	private String job;
 
+	@ManyToOne(fetch=FetchType.EAGER)
+	private Department department;
+
 	//
 	// Constructors
 	//
@@ -36,12 +40,7 @@ public class Employee implements DomainEntity<Long> {
 	public Employee() {
 	}
 
-	public Employee(Long id) {
-		this.id = id;		
-	}
-
-	public Employee(Long id, String employeeName, String employeeSurname, String job) {
-		this.id = id;
+	public Employee(String employeeName, String employeeSurname, String job) {
 		this.employeeName = employeeName;
 		this.employeeSurname = employeeSurname;
 		this.job = job;
@@ -68,7 +67,6 @@ public class Employee implements DomainEntity<Long> {
 	public String getEmployeeName() {
 		return employeeName;
 	}
-
 	public void setEmployeeName(String employeeName) {
 		this.employeeName = employeeName;
 	}
@@ -76,7 +74,6 @@ public class Employee implements DomainEntity<Long> {
 	public String getEmployeeSurname() {
 		return employeeSurname;
 	}
-
 	public void setEmployeeSurname(String employeeSurname) {
 		this.employeeSurname = employeeSurname;
 	}
@@ -84,9 +81,15 @@ public class Employee implements DomainEntity<Long> {
 	public String getJob() {
 		return job;
 	}
-
 	public void setJob(String job) {
 		this.job = job;
+	}
+	
+	public Department getDepartment() {
+		return department;
+	}
+	public void setDepartment(Department department) {
+		this.department = department;
 	}
 
 	//
@@ -102,5 +105,10 @@ public class Employee implements DomainEntity<Long> {
 				.add("job", job)
 				.toString();
 	}
+
+	private static Long createID() {
+		return ++idCounter;
+	}
+	private static long idCounter;
 
 }

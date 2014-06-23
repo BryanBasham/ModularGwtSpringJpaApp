@@ -44,6 +44,8 @@
 
 	<dependencyManagement>
 		<dependencies>
+		
+            <!-- GWT and Web tech -->
 			<dependency>
 				<groupId>com.google.gwt</groupId>
 				<artifactId>gwt-user</artifactId>
@@ -71,6 +73,8 @@
 				<version>3.0.1</version>
 				<scope>provided</scope>
 			</dependency>
+			
+            <!-- Spring, JPA and Hibernate -->
 			<dependency>
 				<groupId>org.springframework</groupId>
 				<artifactId>spring-orm</artifactId>
@@ -102,6 +106,8 @@
                 <classifier>sources</classifier>
                 <version>${jpa.version}</version>
             </dependency>
+        
+            <!-- Utilities -->
 			<dependency>
 				<groupId>org.slf4j</groupId>
 				<artifactId>slf4j-log4j12</artifactId>
@@ -122,6 +128,12 @@
 				<artifactId>c3p0</artifactId>
 				<version>0.9.1.2</version>
 			</dependency>
+			<dependency>
+			    <groupId>com.github.nociar</groupId>
+			    <artifactId>jpa-cloner</artifactId>
+			    <version>1.0.1</version>
+			</dependency>
+			
 		</dependencies>
 	</dependencyManagement>
 
@@ -176,31 +188,6 @@
 							<phase>package</phase>
 							<goals>
 								<goal>jar-no-fork</goal>
-							</goals>
-						</execution>
-					</executions>
-				</plugin>
-				<plugin>
-					<artifactId>maven-clean-plugin</artifactId>
-					<version>2.5</version>
-					<configuration>
-						<filesets>
-							<fileset>
-								<directory>src/main</directory>
-								<includes>
-									<directory>gwt-unitCache/**</directory>
-								</includes>
-								<followSymlinks>false</followSymlinks>
-							</fileset>
-						</filesets>
-						<excludeDefaultDirectories>true</excludeDefaultDirectories>
-					</configuration>
-					<executions>
-						<execution>
-							<id>gwt-unitCache</id>
-							<phase>install</phase>
-							<goals>
-								<goal>clean</goal>
 							</goals>
 						</execution>
 					</executions>

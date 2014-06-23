@@ -1,11 +1,13 @@
 package org.basham.service;
 
-import org.basham.domain.Employee;
+import java.util.List;
+
+import org.basham.domain.Department;
 
 import com.google.gwt.user.client.rpc.RemoteService;
 
 /**
- * The contract for managing {@limk Employee} entities.
+ * The contract for managing {@limk Department} entities.
  * 
  * TODO:
  *   1) Do Service beans really need the GWT {@link RemoteService} marker interface?
@@ -13,10 +15,10 @@ import com.google.gwt.user.client.rpc.RemoteService;
  * 
  * @author <a href='mailto:basham47@gmail.com'>Bryan Basham</a>
  */
-public interface EmployeeService extends RemoteService {
-	
-	public Employee findEmployee(long id);
-	public void saveEmployee(Employee employee);
-	public void deleteEmployee(long id);
+public interface DepartmentService extends RemoteService {
+	public List<Department> retrieveAll();
+	public Department findDepartment(long id);
+	public void saveDepartment(Department department);
+	public void deleteDepartment(long id);
 	
 }

@@ -38,6 +38,7 @@ public abstract class AbstractJpaDAO<K extends Serializable, E extends Serializa
     //
 
 	private final Class<E> entityClass;
+	private final String retrieveAllQuery;
 
 	//
     // Constructors
@@ -51,11 +52,23 @@ public abstract class AbstractJpaDAO<K extends Serializable, E extends Serializa
 	 */
 	protected AbstractJpaDAO(final Class<E> entityClassIn) {
 		entityClass = checkNotNull(entityClassIn);
+		retrieveAllQuery = String.format("SELECT e FROM %s e", entityClass.getName());
 	}
 
 	//
     // AbstractJpaDAO methods
     //
+
+	/**
+	 * Retrieve all Entities of this type.
+	 * 
+	 * @return  A complete list of Entities in the database.
+	 */
+	@SuppressWarnings("unchecked")
+	public List<E> findAll() {
+    	// perform query
+		return entityManager.createQuery(retrieveAllQuery).getResultList();
+	}
 
 	/**
 	 * Retrieves an Entity from the database id.

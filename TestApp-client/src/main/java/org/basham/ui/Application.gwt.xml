@@ -9,8 +9,8 @@
 
 	<add-linker name="xsiframe" />
 
-    <!-- My code -->
-    <inherits name="org.basham.TestApp" />  <!-- Shared library -->
+    <!-- Shared library -->
+    <inherits name="org.basham.TestApp" />
     <!-- Client-side code -->
     <source path="client" />
 	<entry-point class="org.basham.ui.client.Application" />
